@@ -1,0 +1,6 @@
+{
+    "preset": "empty",
+    "rules": {
+        "@PSR12": true
+    }
+}

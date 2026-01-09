@@ -1,0 +1,12 @@
+services:
+  dev:
+    build:
+      context: ./docker/8.1
+      dockerfile: Dockerfile
+      args:
+        WWWGROUP: '${WWWGROUP}'
+    image: modern-laravel-factories
+    environment:
+        WWWUSER: '${WWWUSER}'
+    volumes:
+        - '.:/var/www/html'
