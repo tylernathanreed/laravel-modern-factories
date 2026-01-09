@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-suite:
+    name: Test Suite (${{matrix.name}})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: &versions
+        include:
+          - { name: 'PHP 7.2 / Laravel 6.x', php: '7.2', laravel: '6.0' }
+          - { name: 'PHP 7.3 / Laravel 6.x', php: '7.3', laravel: '6.0' }
+          - { name: 'PHP 7.4 / Laravel 6.x', php: '7.4', laravel: '6.0' }
+          - { name: 'PHP 8.0 / Laravel 6.x', php: '8.0', laravel: '6.0' }
+          - { name: 'PHP 7.2 / Laravel 7.x', php: '7.2', laravel: '7.0' }
+          - { name: 'PHP 7.3 / Laravel 7.x', php: '7.3', laravel: '7.0' }
+          - { name: 'PHP 7.4 / Laravel 7.x', php: '7.4', laravel: '7.0' }
+          - { name: 'PHP 8.0 / Laravel 7.x', php: '8.0', laravel: '7.0' }
+    steps:
+      - &checkout
+        name: Checkout Code
+        uses: actions/checkout@v4
+
+      - &php
+        name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json, dom, curl, libxml, mbstring, pdo, sqlite, pdo_sqlite
+          coverage: none
+
+      - &composer
+        name: Install Composer Dependencies
+        run: composer require illuminate/database:^${{ matrix.laravel }} --no-interaction --no-progress --ansi
+
+      - name: Run Test Suite
+        run: vendor/bin/phpunit --no-coverage
