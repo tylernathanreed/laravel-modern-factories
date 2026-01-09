@@ -3,3 +3,8 @@ parameters:
     paths:
         - src
         - tests/Database/Fixtures
+    ignoreErrors:
+        -
+            message: '#Property Illuminate\\Database\\Eloquent\\Factories\\Sequence::\$sequence \(list<mixed>\) does not accept array<int\|string, list<mixed>>\.#'
+            path: src/Database/Eloquent/Factories/Sequence.php
+            reportUnmatched: false
