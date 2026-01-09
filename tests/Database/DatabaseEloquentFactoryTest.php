@@ -57,14 +57,14 @@ class DatabaseEloquentFactoryTest extends TestCase
 
         $this->schema()->create('posts', function ($table) {
             $table->increments('id');
-            $table->foreignId('user_id');
+            $table->bigInteger('user_id');
             $table->string('title');
             $table->timestamps();
         });
 
         $this->schema()->create('comments', function ($table) {
             $table->increments('id');
-            $table->foreignId('commentable_id');
+            $table->bigInteger('commentable_id');
             $table->string('commentable_type');
             $table->string('body');
             $table->timestamps();
@@ -77,8 +77,8 @@ class DatabaseEloquentFactoryTest extends TestCase
         });
 
         $this->schema()->create('role_user', function ($table) {
-            $table->foreignId('role_id');
-            $table->foreignId('user_id');
+            $table->bigInteger('role_id');
+            $table->bigInteger('user_id');
             $table->string('admin')->default('N');
         });
     }
