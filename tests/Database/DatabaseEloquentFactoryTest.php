@@ -439,7 +439,7 @@ class DatabaseEloquentFactoryTest extends TestCase
                 new CrossJoinSequence(
                     [['first_name' => 'Thomas'], ['first_name' => 'Agent']],
                     [['last_name' => 'Anderson'], ['last_name' => 'Smith']]
-                ),
+                )
             )
             ->make();
 
