@@ -58,11 +58,11 @@
             "php-coveralls -v --dry-run"
         ],
         "test:static": "phpstan",
-        "test:style": "pint --test",
-        "test:style-fix": "pint",
+        "test:lint": "php-cs-fixer fix --allow-risky yes --show-progress true --dry-run",
+        "test:lint:fix": "php-cs-fixer fix --allow-risky yes --show-progress true",
         "test:suite": "phpunit",
         "test": [
-            "@test:style",
+            "@test:lint",
             "@test:static",
             "@test:suite",
             "@test:coverage"

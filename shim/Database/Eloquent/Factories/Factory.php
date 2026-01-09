@@ -117,20 +117,22 @@ abstract class Factory
      * @param  string|null  $connection
      * @return void
      */
-    public final function __construct($count = null,
-                                ?Collection $states = null,
-                                ?Collection $has = null,
-                                ?Collection $for = null,
-                                ?Collection $afterMaking = null,
-                                ?Collection $afterCreating = null,
-                                $connection = null)
+    final public function __construct(
+        $count = null,
+        ?Collection $states = null,
+        ?Collection $has = null,
+        ?Collection $for = null,
+        ?Collection $afterMaking = null,
+        ?Collection $afterCreating = null,
+        $connection = null
+    )
     {
         $this->count = $count;
-        $this->states = $states ?: new Collection;
-        $this->has = $has ?: new Collection;
-        $this->for = $for ?: new Collection;
-        $this->afterMaking = $afterMaking ?: new Collection;
-        $this->afterCreating = $afterCreating ?: new Collection;
+        $this->states = $states ?: new Collection();
+        $this->has = $has ?: new Collection();
+        $this->for = $for ?: new Collection();
+        $this->afterMaking = $afterMaking ?: new Collection();
+        $this->afterCreating = $afterCreating ?: new Collection();
         $this->connection = $connection;
         $this->faker = $this->withFaker();
     }
@@ -150,7 +152,7 @@ abstract class Factory
      */
     public static function new($attributes = [])
     {
-        return (new static)->state($attributes)->configure();
+        return (new static())->state($attributes)->configure();
     }
 
     /**
@@ -513,7 +515,8 @@ abstract class Factory
     {
         return $this->newInstance([
             'has' => $this->has->concat([new Relationship(
-                $factory, $relationship ?: $this->guessRelationship($factory->modelName())
+                $factory,
+                $relationship ?: $this->guessRelationship($factory->modelName())
             )]),
         ]);
     }
@@ -687,7 +690,9 @@ abstract class Factory
     {
         $resolver = static::$modelNameResolver ?: function (self $factory) {
             $namespacedFactoryBasename = Str::replaceLast(
-                'Factory', '', Str::replaceFirst(static::$namespace, '', get_class($factory))
+                'Factory',
+                '',
+                Str::replaceFirst(static::$namespace, '', get_class($factory))
             );
 
             $factoryBasename = Str::replaceLast('Factory', '', class_basename($factory));

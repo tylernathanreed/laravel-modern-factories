@@ -28,7 +28,7 @@ class DatabaseEloquentFactoryTest extends TestCase
         $container->instance(Application::class, $app = Mockery::mock(Application::class));
         $app->shouldReceive('getNamespace')->andReturn('App\\');
 
-        $db = new DB;
+        $db = new DB();
 
         $db->addConnection([
             'driver' => 'sqlite',
@@ -577,7 +577,7 @@ class DatabaseEloquentFactoryTest extends TestCase
     {
         $connection = $this->connection();
         assert($connection instanceof Connection);
-        
+
         return $connection->getSchemaBuilder();
     }
 }
