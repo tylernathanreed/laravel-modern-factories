@@ -384,7 +384,7 @@ class DatabaseEloquentFactoryTest extends TestCase
     {
         $users = FactoryTestUserFactory::times(2)->sequence(
             ['name' => 'Taylor Otwell'],
-            ['name' => 'Abigail Otwell'],
+            ['name' => 'Abigail Otwell']
         )->create();
 
         $this->assertSame('Taylor Otwell', $users[0]->name);
@@ -429,7 +429,7 @@ class DatabaseEloquentFactoryTest extends TestCase
             foreach ($assertions as $key => $assertion) {
                 $this->assertSame(
                     $assertion,
-                    $users[$key]->only('first_name', 'last_name'),
+                    $users[$key]->only('first_name', 'last_name')
                 );
             }
         };
@@ -438,7 +438,7 @@ class DatabaseEloquentFactoryTest extends TestCase
             ->state(
                 new CrossJoinSequence(
                     [['first_name' => 'Thomas'], ['first_name' => 'Agent']],
-                    [['last_name' => 'Anderson'], ['last_name' => 'Smith']],
+                    [['last_name' => 'Anderson'], ['last_name' => 'Smith']]
                 ),
             )
             ->make();
@@ -448,7 +448,7 @@ class DatabaseEloquentFactoryTest extends TestCase
         $usersByMethod = FactoryTestUserFactory::times(4)
             ->crossJoinSequence(
                 [['first_name' => 'Thomas'], ['first_name' => 'Agent']],
-                [['last_name' => 'Anderson'], ['last_name' => 'Smith']],
+                [['last_name' => 'Anderson'], ['last_name' => 'Smith']]
             )
             ->make();
 
