@@ -2,6 +2,7 @@
 
 namespace Illuminate\Database\Eloquent\Factories;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -45,7 +46,7 @@ class BelongsToRelationship
      * Get the parent model attributes and resolvers for the given child model.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return array
+     * @return array<string,int|string|Closure>
      */
     public function attributesFor(Model $model)
     {
@@ -70,6 +71,7 @@ class BelongsToRelationship
         return function () use ($key) {
             if (! $this->resolved) {
                 $instance = $this->factory instanceof Factory ? $this->factory->create() : $this->factory;
+                assert($instance instanceof Model);
 
                 return $this->resolved = $key ? $instance->{$key} : $instance->getKey();
             }

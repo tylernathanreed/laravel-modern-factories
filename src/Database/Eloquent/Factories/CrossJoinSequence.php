@@ -9,7 +9,7 @@ class CrossJoinSequence extends Sequence
     /**
      * Create a new cross join sequence instance.
      *
-     * @param  array  $sequences
+     * @param  list<mixed>  $sequences
      * @return void
      */
     public function __construct(...$sequences)
@@ -21,6 +21,7 @@ class CrossJoinSequence extends Sequence
             Arr::crossJoin(...$sequences)
         );
 
+        // @phpstan-ignore argument.type
         parent::__construct(...$crossJoined);
     }
 }

@@ -10,7 +10,7 @@ class Sequence implements Countable
     /**
      * The sequence of return values.
      *
-     * @var array
+     * @var list<mixed>
      */
     protected $sequence;
 
@@ -31,11 +31,12 @@ class Sequence implements Countable
     /**
      * Create a new sequence instance.
      *
-     * @param  array  $sequence
+     * @param list<mixed>  $sequence
      * @return void
      */
     public function __construct(...$sequence)
     {
+        // @phpstan-ignore assign.propertyType
         $this->sequence = $sequence;
         $this->count = count($sequence);
     }

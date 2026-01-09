@@ -17,7 +17,7 @@ class BelongsToManyRelationship
     /**
      * The pivot attributes / attribute resolver.
      *
-     * @var callable|array
+     * @var callable|array<string,mixed>
      */
     protected $pivot;
 
@@ -32,7 +32,7 @@ class BelongsToManyRelationship
      * Create a new attached relationship definition.
      *
      * @param  \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model  $factory
-     * @param  callable|array  $pivot
+     * @param  callable|array<string,mixed>  $pivot
      * @param  string  $relationship
      * @return void
      */

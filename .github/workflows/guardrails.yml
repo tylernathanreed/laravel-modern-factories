@@ -38,3 +38,15 @@ jobs:
 
       - name: Run Test Suite
         run: vendor/bin/phpunit --no-coverage
+
+  static-analysis:
+    name: Static Analysis (${{ matrix.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: *versions
+    steps:
+      - *checkout
+      - *php
+      - *composer
+      - name: Run Static Analysis
+        run: composer test:static

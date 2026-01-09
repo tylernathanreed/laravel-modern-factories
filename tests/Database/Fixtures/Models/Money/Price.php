@@ -12,7 +12,7 @@ class Price extends Model
 
     protected $table = 'prices';
 
-    public static function factory()
+    public static function factory(): PriceFactory
     {
         return PriceFactory::new();
     }
