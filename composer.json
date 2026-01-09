@@ -31,8 +31,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Reedware\\ModernLaravelFactories\\": "src/",
-            "Illuminate\\": "shim/"
+            "Illuminate\\": "src/"
         }
     },
     "autoload-dev": {
