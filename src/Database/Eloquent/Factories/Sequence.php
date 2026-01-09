@@ -36,6 +36,7 @@ class Sequence implements Countable
      */
     public function __construct(...$sequence)
     {
+        // @phpstan-ignore assign.propertyType
         $this->sequence = $sequence;
         $this->count = count($sequence);
     }
