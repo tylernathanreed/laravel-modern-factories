@@ -46,11 +46,11 @@ jobs:
         run: composer require illuminate/database:~${{ matrix.laravel }} --no-interaction --no-progress --ansi
 
       - name: Run PHP Lint
-        if: matrix.php == '5.5' || matrix.php != '5.6'
+        if: matrix.php == '5.5' || matrix.php == '5.6' || matrix.php == '7.0'
         run: composer test:lint:legacy
 
       - name: Run Static Analysis
-        if: matrix.php != '5.5' && matrix.php != '5.6'
+        if: matrix.php != '5.5' && matrix.php != '5.6' && matrix.php != '7.0'
         run: |
           composer require phpstan/phpstan --dev
           composer test:static
