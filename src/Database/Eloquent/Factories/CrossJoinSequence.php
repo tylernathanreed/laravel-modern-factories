@@ -2,8 +2,6 @@
 
 namespace Illuminate\Database\Eloquent\Factories;
 
-use Illuminate\Support\Arr;
-
 class CrossJoinSequence extends Sequence
 {
     /**
@@ -12,24 +10,32 @@ class CrossJoinSequence extends Sequence
      * @param  list<mixed>  $sequences
      * @return void
      */
-    public function __construct(...$sequences)
+    public function __construct()
     {
+        $sequences = func_get_args();
+
         $crossJoined = array_map(
             function ($a) {
-                return array_merge(...$a);
+                $m = [];
+
+                foreach ($a as $_a) {
+                    $m = array_merge($m, $_a);
+                }
+
+                return $m;
             },
-            $this->crossJoin(...$sequences)
+            $this->crossJoin($sequences)
         );
 
-        // @phpstan-ignore argument.type
-        parent::__construct(...$crossJoined);
+        $this->sequence = $crossJoined;
+        $this->count = count($crossJoined);
     }
 
     /**
      * @param list<mixed> $arrays
      * @return list<mixed>
      */
-    private function crossJoin(...$arrays)
+    private function crossJoin($arrays)
     {
         $results = [[]];
 

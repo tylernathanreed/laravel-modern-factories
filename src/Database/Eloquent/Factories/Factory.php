@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+use ReflectionClass;
 use Throwable;
 
 /**
@@ -525,9 +526,9 @@ abstract class Factory
      * @param  list<array<string,mixed>>  $sequence
      * @return static
      */
-    public function sequence(...$sequence)
+    public function sequence()
     {
-        return $this->state(new Sequence(...$sequence));
+        return $this->state((new ReflectionClass(Sequence::class))->newInstanceArgs(func_get_args()));
     }
 
     /**
@@ -536,9 +537,9 @@ abstract class Factory
      * @param  list<array<string,mixed>>  $sequence
      * @return static
      */
-    public function crossJoinSequence(...$sequence)
+    public function crossJoinSequence()
     {
-        return $this->state(new CrossJoinSequence(...$sequence));
+        return $this->state((new ReflectionClass(CrossJoinSequence::class))->newInstanceArgs(func_get_args()));
     }
 
     /**
@@ -694,7 +695,7 @@ abstract class Factory
      */
     protected function newInstance($arguments = [])
     {
-        return new static(...array_values(array_merge([
+        $params = array_merge([
             'count' => $this->count,
             'states' => $this->states,
             'has' => $this->has,
@@ -702,7 +703,17 @@ abstract class Factory
             'afterMaking' => $this->afterMaking,
             'afterCreating' => $this->afterCreating,
             'connection' => $this->connection,
-        ], $arguments)));
+        ], $arguments);
+
+        return new static(
+            $params['count'],
+            $params['states'],
+            $params['has'],
+            $params['for'],
+            $params['afterMaking'],
+            $params['afterCreating'],
+            $params['connection']
+        );
     }
 
     /**
@@ -847,7 +858,7 @@ abstract class Factory
     public function __call($method, $parameters)
     {
         if ($method === 'for') {
-            return $this->forModel(...$parameters);
+            return $this->forModel($parameters[0], isset($parameters[1]) ? $parameters[1] : null);
         }
 
         if (static::hasMacro($method)) {
@@ -899,7 +910,7 @@ abstract class Factory
     public static function __callStatic($method, $parameters)
     {
         if ($method === 'new') {
-            return static::newFactory(...$parameters);
+            return static::newFactory(isset($parameters[0]) ? $parameters[0] : []);
         }
 
         $this->throwBadMethodCallException($method);

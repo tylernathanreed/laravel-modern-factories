@@ -34,8 +34,10 @@ class Sequence implements Countable
      * @param list<mixed>  $sequence
      * @return void
      */
-    public function __construct(...$sequence)
+    public function __construct()
     {
+        $sequence = func_get_args();
+
         // @phpstan-ignore assign.propertyType
         $this->sequence = $sequence;
         $this->count = count($sequence);
