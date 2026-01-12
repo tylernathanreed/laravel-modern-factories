@@ -7,6 +7,10 @@ with the aim of helping legacy applications update to modern Laravel.
 [![PHP Version](https://img.shields.io/badge/PHP-7.2%2F8.0-purple)](https://php.net/)
 [![Build](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/guardrails.yml/badge.svg)](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/guardrails.yml)
 
+**Usage of Laravel 7 and older is waning, but it ain't zero. Trying to upgrade? Maybe this package can help.**
+
+![Laravel Installs](docs/installs.png)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
