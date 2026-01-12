@@ -50,6 +50,7 @@ The following Laravel and PHP versions are supported:
 
 | Laravel | PHP       | EOL                 |
 | ------- | --------- | ------------------- |
+| 5.8     | 7.1 - 7.4 | February 26th, 2020 |
 | 6 (LTS) | 7.2 - 8.0 | September 6th, 2022 |
 | 7       | 7.2 - 8.0 | March 3rd, 2021     |
 

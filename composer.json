@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": ">=7.2",
-        "illuminate/database": "^6.0|^7.0",
-        "illuminate/support": "^6.0|^7.0"
+        "illuminate/database": "^5.8|^6.0|^7.0",
+        "illuminate/support": "^5.8|^6.0|^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -49,7 +49,16 @@
     "minimum-stability": "stable",
     "config": {
         "sort-packages": true,
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "audit": {
+            "ignore": {
+                "PKSA-zrgd-gjq7-6ykr": "Laravel 5.5 vulnerability",
+                "PKSA-csyb-yc4p-mnbs": "Carbon 1.x vulnerability"
+            }
+        },
+        "allow-plugins": {
+            "kylekatarnls/update-helper": false
+        }
     },
     "scripts": {
         "test:coverage": [

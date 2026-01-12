@@ -11,6 +11,10 @@ jobs:
     strategy:
       matrix: &versions
         include:
+          - { name: 'PHP 7.1 / Laravel 5.8', php: '7.1', laravel: '5.8.0' }
+          - { name: 'PHP 7.2 / Laravel 5.8', php: '7.2', laravel: '5.8.0' }
+          - { name: 'PHP 7.3 / Laravel 5.8', php: '7.3', laravel: '5.8.0' }
+          - { name: 'PHP 7.4 / Laravel 5.8', php: '7.4', laravel: '5.8.0' }
           - { name: 'PHP 7.2 / Laravel 6.x', php: '7.2', laravel: '6.0' }
           - { name: 'PHP 7.3 / Laravel 6.x', php: '7.3', laravel: '6.0' }
           - { name: 'PHP 7.4 / Laravel 6.x', php: '7.4', laravel: '6.0' }
@@ -34,7 +38,7 @@ jobs:
 
       - &composer
         name: Install Composer Dependencies
-        run: composer require illuminate/database:^${{ matrix.laravel }} --no-interaction --no-progress --ansi
+        run: composer require illuminate/database:~${{ matrix.laravel }} --no-interaction --no-progress --ansi
 
       - name: Run Test Suite
         run: vendor/bin/phpunit --no-coverage
