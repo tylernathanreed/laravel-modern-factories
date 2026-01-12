@@ -46,6 +46,6 @@ if (isset($pintConfig['notName'])) {
 
 return (new Config)
     ->setFinder($finder)
-    ->setRules($pintConfig['rules'] ?? [])
+    ->setRules(isset($pintConfig['rules']) ? $pintConfig['rules'] : [])
     ->setRiskyAllowed(true)
     ->setUsingCache(true);

@@ -46,7 +46,7 @@ class Sequence implements Countable
      *
      * @return int
      */
-    public function count(): int
+    public function count()
     {
         return $this->count;
     }

@@ -61,8 +61,11 @@ class BelongsToRelationship
         ];
     }
 
-    /** @param BelongsTo|MorphTo $relation */
-    protected function getForeignKeyName($relation): string
+    /**
+     * @param BelongsTo|MorphTo $relation
+     * @return string
+     */
+    protected function getForeignKeyName($relation)
     {
         if (method_exists($relation, 'getForeignKeyName')) {
             return $relation->getForeignKeyName();
@@ -71,8 +74,11 @@ class BelongsToRelationship
         }
     }
 
-    /** @param BelongsTo|MorphTo $relation */
-    protected function getOwnerKeyName($relation): ?string
+    /**
+     * @param BelongsTo|MorphTo $relation
+     * @return ?string
+     */
+    protected function getOwnerKeyName($relation)
     {
         if (method_exists($relation, 'getOwnerKeyName')) {
             return $relation->getOwnerKeyName();

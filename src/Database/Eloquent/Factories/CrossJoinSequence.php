@@ -18,10 +18,35 @@ class CrossJoinSequence extends Sequence
             function ($a) {
                 return array_merge(...$a);
             },
-            Arr::crossJoin(...$sequences)
+            $this->crossJoin(...$sequences)
         );
 
         // @phpstan-ignore argument.type
         parent::__construct(...$crossJoined);
+    }
+
+    /**
+     * @param list<mixed> $arrays
+     * @return list<mixed>
+     */
+    private function crossJoin(...$arrays)
+    {
+        $results = [[]];
+
+        foreach ($arrays as $index => $array) {
+            $append = [];
+
+            foreach ($results as $product) {
+                foreach ($array as $item) {
+                    $product[$index] = $item;
+
+                    $append[] = $product;
+                }
+            }
+
+            $results = $append;
+        }
+
+        return $results;
     }
 }

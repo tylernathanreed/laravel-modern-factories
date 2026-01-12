@@ -14,9 +14,15 @@ trait HasFactory
     {
         $factory = static::newFactory() ?: Factory::factoryForModel(get_called_class());
 
-        return $factory
-                    ->count(is_numeric($parameters[0] ?? null) ? $parameters[0] : null)
-                    ->state(is_array($parameters[0] ?? null) ? $parameters[0] : ($parameters[1] ?? []));
+        $count = isset($parameters[0]) && is_numeric($parameters[0])
+            ? $parameters[0]
+            : null;
+
+        $state = isset($parameters[0]) && is_array($parameters[0])
+            ? $parameters[0]
+            : (isset($parameters[1]) ? $parameters[1] : []);
+
+        return $factory->count($count)->state($state);
     }
 
     /**

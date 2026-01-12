@@ -12,8 +12,9 @@ class Price extends Model
 
     protected $table = 'prices';
 
-    public static function factory(): PriceFactory
+    /** @return PriceFactory */
+    public static function factory()
     {
-        return PriceFactory::new();
+        return PriceFactory::newFactory();
     }
 }

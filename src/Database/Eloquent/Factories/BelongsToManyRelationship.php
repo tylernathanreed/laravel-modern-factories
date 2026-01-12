@@ -3,6 +3,7 @@
 namespace Illuminate\Database\Eloquent\Factories;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class BelongsToManyRelationship
@@ -51,11 +52,26 @@ class BelongsToManyRelationship
      */
     public function createFor(Model $model)
     {
-        Collection::wrap($this->factory instanceof Factory ? $this->factory->create([], $model) : $this->factory)->each(function ($attachable) use ($model) {
+        $this->wrap($this->factory instanceof Factory ? $this->factory->create([], $model) : $this->factory)->each(function ($attachable) use ($model) {
             $model->{$this->relationship}()->attach(
                 $attachable,
                 is_callable($this->pivot) ? call_user_func($this->pivot, $model) : $this->pivot
             );
         });
+    }
+
+    /**
+     * @param mixed $value
+     * @return Collection
+     */
+    private function wrap($value)
+    {
+        if ($value instanceof Collection) {
+            return new Collection($value);
+        } elseif (is_array($value)) {
+            return new Collection($value);
+        } else {
+            return new Collection([$value]);
+        }
     }
 }

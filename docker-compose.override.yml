@@ -1,4 +1,4 @@
 services:
   dev:
     build:
-      context: ./docker/7.4
+      context: ./docker/5.6
