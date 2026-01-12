@@ -450,11 +450,13 @@ abstract class Factory
      */
     protected function getRawAttributes($parent)
     {
-        return $this->states->pipe(function ($states) {
-            return $this->for->isEmpty() ? $states : new Collection(array_merge([function () {
+        $states = $this->for->isEmpty()
+            ? $this->states
+            : new Collection(array_merge([function () {
                 return $this->parentResolvers();
-            }], $states->all()));
-        })->reduce(function ($carry, $state) use ($parent) {
+            }], $this->states->all()));
+
+        return $states->reduce(function ($carry, $state) use ($parent) {
             if ($state instanceof Closure) {
                 $state = $state->bindTo($this);
             }
