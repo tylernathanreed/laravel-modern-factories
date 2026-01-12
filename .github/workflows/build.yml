@@ -1,12 +1,12 @@
-name: Tests
+name: Build
 
 on:
   push:
   pull_request:
 
 jobs:
-  test-suite:
-    name: Test Suite (${{matrix.name}})
+  build:
+    name: Build (${{matrix.name}})
     runs-on: ubuntu-latest
     strategy:
       matrix: &versions
@@ -45,19 +45,6 @@ jobs:
         name: Install Composer Dependencies
         run: composer require illuminate/database:~${{ matrix.laravel }} --no-interaction --no-progress --ansi
 
-      - name: Run Test Suite
-        run: vendor/bin/phpunit --no-coverage
-
-  static-analysis:
-    name: Static Analysis (${{ matrix.name }})
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: *versions
-    steps:
-      - *checkout
-      - *php
-      - *composer
-
       - name: Run PHP Lint
         if: matrix.php == '5.5' || matrix.php != '5.6'
         run: composer test:lint:legacy
@@ -65,3 +52,6 @@ jobs:
       - name: Run Static Analysis
         if: matrix.php != '5.5' && matrix.php != '5.6'
         run: composer test:static
+
+      - name: Run Test Suite
+        run: vendor/bin/phpunit --no-coverage
