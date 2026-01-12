@@ -343,7 +343,7 @@ abstract class Factory
     {
         $results->each(function ($model) {
             if (! isset($this->connection)) {
-                $model->setConnection($model->newQuery()->getConnection()->getName());
+                $model->setConnection($model->newQuery()->getQuery()->getConnection()->getName());
             }
 
             $model->save();
@@ -739,13 +739,13 @@ abstract class Factory
     public function modelName()
     {
         $resolver = static::$modelNameResolver ?: function (self $factory) {
-            $namespacedFactoryBasename = Str::replaceLast(
+            $namespacedFactoryBasename = static::replaceLast(
                 'Factory',
                 '',
-                Str::replaceFirst(static::$namespace, '', get_class($factory))
+                static::replaceFirst(static::$namespace, '', get_class($factory))
             );
 
-            $factoryBasename = Str::replaceLast('Factory', '', class_basename($factory));
+            $factoryBasename = static::replaceLast('Factory', '', class_basename($factory));
 
             $appNamespace = static::appNamespace();
 
@@ -976,5 +976,43 @@ abstract class Factory
     private static function after($subject, $search)
     {
         return $search === '' ? $subject : array_reverse(explode($search, $subject, 2))[0];
+    }
+
+    /**
+     * Replace the first occurrence of a given value in the string.
+     *
+     * @param  string  $search
+     * @param  string  $replace
+     * @param  string  $subject
+     * @return string
+     */
+    private static function replaceFirst($search, $replace, $subject)
+    {
+        $position = strpos($subject, $search);
+
+        if ($position !== false) {
+            return substr_replace($subject, $replace, $position, strlen($search));
+        }
+
+        return $subject;
+    }
+
+    /**
+     * Replace the last occurrence of a given value in the string.
+     *
+     * @param  string  $search
+     * @param  string  $replace
+     * @param  string  $subject
+     * @return string
+     */
+    private static function replaceLast($search, $replace, $subject)
+    {
+        $position = strrpos($subject, $search);
+
+        if ($position !== false) {
+            return substr_replace($subject, $replace, $position, strlen($search));
+        }
+
+        return $subject;
     }
 }
