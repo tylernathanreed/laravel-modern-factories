@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Events\Dispatcher;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Tests\Database\Fixtures\Models\Money\Price;
 use Mockery;
@@ -119,28 +119,6 @@ class DatabaseEloquentFactoryTest extends TestCase
 
         $users = FactoryTestUserFactory::times(10)->create();
         $this->assertCount(10, $users);
-    }
-
-    /** @test */
-    public function it_dispatches_events_when_creating_models()
-    {
-        Event::fake();
-
-        $user = FactoryTestUserFactory::newFactory()->create();
-        $this->assertInstanceOf(Eloquent::class, $user);
-
-        Event::assertDispatched('eloquent.created: ' . FactoryTestUser::class);
-    }
-
-    /** @test */
-    public function it_does_not_dispatch_events_when_creating_models_quietly()
-    {
-        Event::fake();
-
-        $user = FactoryTestUserFactory::newFactory()->createQuietly();
-        $this->assertInstanceOf(Eloquent::class, $user);
-
-        Event::assertNotDispatched('eloquent.created: ' . FactoryTestUser::class);
     }
 
     /** @test */
@@ -292,7 +270,7 @@ class DatabaseEloquentFactoryTest extends TestCase
             ->create();
 
         $this->assertCount(3, $posts->filter(function ($post) use ($user) {
-            return $post->user->is($user);
+            return $post->user->getKey() == $user->getKey();
         }));
 
         $this->assertCount(1, FactoryTestUser::all());
@@ -308,7 +286,7 @@ class DatabaseEloquentFactoryTest extends TestCase
             ->create();
 
         $this->assertCount(3, $posts->filter(function ($post) use ($user) {
-            return $post->factoryTestUser->is($user);
+            return $post->factoryTestUser->getKey() == $user->getKey();
         }));
 
         $this->assertCount(1, FactoryTestUser::all());

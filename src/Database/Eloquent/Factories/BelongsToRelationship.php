@@ -82,8 +82,10 @@ class BelongsToRelationship
     {
         if (method_exists($relation, 'getOwnerKeyName')) {
             return $relation->getOwnerKeyName();
-        } else {
+        } elseif (method_exists($relation, 'getOwnerKey')) {
             return $relation->getOwnerKey();
+        } else {
+            return $relation->getOtherKey();
         }
     }
 

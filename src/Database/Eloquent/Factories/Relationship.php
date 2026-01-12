@@ -49,14 +49,29 @@ class Relationship
         if ($relationship instanceof MorphOneOrMany) {
             $this->factory->state([
                 $relationship->getMorphType() => $relationship->getMorphClass(),
-                $relationship->getForeignKeyName() => $relationship->getParentKey(),
+                $this->getForeignKeyName($relationship) => $relationship->getParentKey(),
             ])->create([], $parent);
         } elseif ($relationship instanceof HasOneOrMany) {
             $this->factory->state([
-                $relationship->getForeignKeyName() => $relationship->getParentKey(),
+                $this->getForeignKeyName($relationship) => $relationship->getParentKey(),
             ])->create([], $parent);
         } elseif ($relationship instanceof BelongsToMany) {
             $relationship->attach($this->factory->create([], $parent));
+        }
+    }
+
+    /**
+     * @param HasOneOrMany|MorphOneOrMany $relation
+     * @return string
+     */
+    private function getForeignKeyName($relation)
+    {
+        if (method_exists($relation, 'getForeignKeyName')) {
+            return $relation->getForeignKeyName();
+        } elseif (method_exists($relation, 'getPlainForeignKey')) {
+            return $relation->getPlainForeignKey();
+        } else {
+            return $relation->getForeignKey();
         }
     }
 }
