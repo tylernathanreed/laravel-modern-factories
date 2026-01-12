@@ -13,8 +13,8 @@ jobs:
         include:
           # Laravel 5.1 (LTS)
           - { name: 'PHP 5.5 / Laravel 5.1', php: '5.5', laravel: '5.1.0' }
-          # - { name: 'PHP 5.6 / Laravel 5.1', php: '5.6', laravel: '5.1.0' }
-          # - { name: 'PHP 7.0 / Laravel 5.1', php: '7.0', laravel: '5.1.0' }
+          - { name: 'PHP 5.6 / Laravel 5.1', php: '5.6', laravel: '5.1.0' }
+          - { name: 'PHP 7.0 / Laravel 5.1', php: '7.0', laravel: '5.1.0' }
 
           # Laravel 5.2
           # - { name: 'PHP 5.5 / Laravel 5.2', php: '5.5', laravel: '5.2.0' }
@@ -51,7 +51,9 @@ jobs:
 
       - name: Run Static Analysis
         if: matrix.php != '5.5' && matrix.php != '5.6'
-        run: composer test:static
+        run: |
+          composer require phpstan/phpstan --dev
+          composer test:static
 
       - name: Run Test Suite
         run: vendor/bin/phpunit --no-coverage
