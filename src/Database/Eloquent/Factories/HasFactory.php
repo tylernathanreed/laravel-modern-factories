@@ -10,8 +10,10 @@ trait HasFactory
      * @param  mixed  $parameters
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public static function factory(...$parameters)
+    public static function factory()
     {
+        $parameters = func_get_args();
+
         $factory = static::newFactory() ?: Factory::factoryForModel(get_called_class());
 
         $count = isset($parameters[0]) && is_numeric($parameters[0])
