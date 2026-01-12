@@ -4,3 +4,5 @@ parameters:
         - src
         - tests/Database/Fixtures
     reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Parameter \#1 \$source of method Illuminate\\Support\\Collection::concat\(\) expects Traversable, array<[^,]+, [^>]+> given\.#'
