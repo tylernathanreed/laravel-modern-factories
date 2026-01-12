@@ -48,17 +48,10 @@ This package targets the feature set of [Laravel 8.x Eloquent Factories](https:/
 
 The following Laravel and PHP versions are supported:
 
-| Package   | Laravel   | PHP       | EOL                 |
-| --------- | --------- | --------- | ------------------- |
-| 1.x       | 5.3       | 5.6       | August 23rd, 2017   |
-| 1.x       | 5.4       | 5.6       | January 24th, 2018  |
-| 2.x       | 5.4       | 7.0 - 7.2 | January 24th, 2018  |
-| 2.x       | 5.5 (LTS) | 7.0 - 7.3 | August 30th, 2020   |
-| 2.x       | 5.6       | 7.1 - 7.3 | February 7th, 2019  |
-| 2.x       | 5.7       | 7.1 - 7.3 | September 4th, 2019 |
-| 2.x       | 5.8       | 7.1 - 7.4 | February 26th, 2020 |
-| 2.x       | 6 (LTS)   | 7.2 - 8.0 | September 6th, 2022 |
-| 2.x       | 7         | 7.2 - 8.0 | March 3rd, 2021     |
+| Package   | Laravel   | PHP       |
+| --------- | --------- | --------- |
+| 1.x       | 5.2 - 5.4 | 5.5 - 5.6 |
+| 2.x       | 5.4 - 7.x | 7.0 - 8.0 |
 
 ## Usage
 

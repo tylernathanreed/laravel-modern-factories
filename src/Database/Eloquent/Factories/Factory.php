@@ -392,9 +392,10 @@ abstract class Factory
         }
 
         if ($this->count === null) {
-            return tap($this->makeInstance($parent), function ($instance) {
-                $this->callAfterMaking(collect([$instance]));
-            });
+            $instance = $this->makeInstance($parent);
+            $this->callAfterMaking(collect([$instance]));
+
+            return $instance;
         }
 
         if ($this->count < 1) {
@@ -419,11 +420,13 @@ abstract class Factory
     protected function makeInstance($parent)
     {
         return Model::unguarded(function () use ($parent) {
-            return tap($this->newModel($this->getExpandedAttributes($parent)), function ($instance) {
-                if (isset($this->connection)) {
-                    $instance->setConnection($this->connection);
-                }
-            });
+            $instance = $this->newModel($this->getExpandedAttributes($parent));
+
+            if (isset($this->connection)) {
+                $instance->setConnection($this->connection);
+            }
+
+            return $instance;
         });
     }
 

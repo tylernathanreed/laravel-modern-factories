@@ -2,6 +2,7 @@
 
 namespace Illuminate\Tests\Database;
 
+use Exception;
 use Faker\Generator;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Foundation\Application;
@@ -27,6 +28,12 @@ class DatabaseEloquentFactoryTest extends TestCase
     protected function setUp()
     {
         $container = Container::getInstance();
+
+        if (is_null($container)) {
+            $container = new Container;
+            Container::setInstance($container);
+        }
+
         $container->singleton(Generator::class, function () {
             return \Faker\Factory::create('en_US');
         });
@@ -94,7 +101,11 @@ class DatabaseEloquentFactoryTest extends TestCase
 
         $this->schema()->drop('users');
 
-        Container::setInstance(null);
+        try {
+            Container::setInstance(null);
+        } catch (Exception $e) {
+
+        }
     }
 
     /** @test */
