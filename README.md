@@ -50,7 +50,7 @@ The following Laravel and PHP versions are supported:
 
 | Package   | Laravel   | PHP       |
 | --------- | --------- | --------- |
-| 1.x       | 5.2 - 5.4 | 5.5 - 5.6 |
+| 1.x       | 5.1 - 5.4 | 5.5 - 8.0 |
 | 2.x       | 5.4 - 7.x | 7.0 - 8.0 |
 
 ## Usage

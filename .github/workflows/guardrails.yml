@@ -11,7 +11,19 @@ jobs:
     strategy:
       matrix: &versions
         include:
+          - { name: 'PHP 5.5 / Laravel 5.1', php: '5.5', laravel: '5.1.0' }
+          - { name: 'PHP 5.6 / Laravel 5.1', php: '5.6', laravel: '5.1.0' }
+          - { name: 'PHP 7.0 / Laravel 5.1', php: '7.0', laravel: '5.1.0' }
+
+          - { name: 'PHP 5.5 / Laravel 5.2', php: '5.5', laravel: '5.2.0' }
+          - { name: 'PHP 5.6 / Laravel 5.2', php: '5.6', laravel: '5.2.0' }
+          - { name: 'PHP 7.0 / Laravel 5.2', php: '7.0', laravel: '5.2.0' }
+
+          - { name: 'PHP 5.6 / Laravel 5.3', php: '5.6', laravel: '5.4.0' }
+          - { name: 'PHP 7.0 / Laravel 5.3', php: '7.0', laravel: '5.4.0' }
+
           - { name: 'PHP 5.6 / Laravel 5.4', php: '5.6', laravel: '5.4.0' }
+          - { name: 'PHP 7.0 / Laravel 5.4', php: '7.0', laravel: '5.4.0' }
     steps:
       - &checkout
         name: Checkout Code
@@ -43,9 +55,9 @@ jobs:
       - *composer
 
       - name: Run PHP Lint
-        if: matrix.php == '5.6'
+        if: matrix.php == '5.5' || matrix.php != '5.6'
         run: composer test:lint:legacy
 
       - name: Run Static Analysis
-        if: matrix.php != '5.6'
+        if: matrix.php != '5.5' && matrix.php != '5.6'
         run: composer test:static
