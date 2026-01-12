@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Tests\Database\Fixtures\Models\Money\Price;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class DatabaseEloquentFactoryTest extends TestCase
 {
@@ -105,6 +106,8 @@ class DatabaseEloquentFactoryTest extends TestCase
             Container::setInstance(null);
         } catch (Exception $e) {
 
+        } catch (Throwable $e) {
+            
         }
     }
 
