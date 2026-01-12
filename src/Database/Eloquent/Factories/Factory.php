@@ -10,6 +10,7 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
@@ -242,7 +243,7 @@ abstract class Factory
      */
     public function createManyQuietly(iterable $records)
     {
-        return Model::withoutEvents(function () use ($records) {
+        return $this->withoutEvents(function () use ($records) {
             return $this->createMany($records);
         });
     }
@@ -284,9 +285,34 @@ abstract class Factory
      */
     public function createQuietly($attributes = [], ?Model $parent = null)
     {
-        return Model::withoutEvents(function () use ($attributes, $parent) {
+        return $this->withoutEvents(function () use ($attributes, $parent) {
             return $this->create($attributes, $parent);
         });
+    }
+
+    /**
+     * @template T
+     * @param callable():T $callback
+     * @return T
+     */
+    private function withoutEvents(callable $callback)
+    {
+        if (method_exists(Model::class, 'withoutEvents')) {
+            return Model::withoutEvents($callback);
+        }
+
+        $dispatcher = Model::getEventDispatcher();
+        /** @var ?Dispatcher $dispatcher */
+
+        Model::unsetEventDispatcher();
+
+        try {
+            return $callback();
+        } finally {
+            if ($dispatcher) {
+                Model::setEventDispatcher($dispatcher);
+            }
+        }
     }
 
     /**
@@ -842,38 +868,6 @@ abstract class Factory
                     ->state((is_callable($parameters[0] ?? null) || is_array($parameters[0] ?? null)) ? $parameters[0] : ($parameters[1] ?? [])),
                 $relationship
             );
-        }
-    }
-
-    /**
-     * Forward a method call to the given object.
-     *
-     * @param  mixed  $object
-     * @param  string  $method
-     * @param  array  $parameters
-     * @return mixed
-     *
-     * @throws \BadMethodCallException
-     */
-    protected function forwardCallTo($object, $method, $parameters)
-    {
-        try {
-            return $object->{$method}(...$parameters);
-        } catch (Error | BadMethodCallException $e) {
-            $pattern = '~^Call to undefined method (?P<class>[^:]+)::(?P<method>[^\(]+)\(\)$~';
-
-            if (! preg_match($pattern, $e->getMessage(), $matches)) {
-                throw $e;
-            }
-
-            if (
-                $matches['class'] != get_class($object) ||
-                $matches['method'] != $method
-            ) {
-                throw $e;
-            }
-
-            static::throwBadMethodCallException($method);
         }
     }
 

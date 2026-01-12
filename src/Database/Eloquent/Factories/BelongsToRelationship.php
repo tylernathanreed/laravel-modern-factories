@@ -4,6 +4,7 @@ namespace Illuminate\Database\Eloquent\Factories;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class BelongsToRelationship
@@ -54,10 +55,30 @@ class BelongsToRelationship
 
         return $relationship instanceof MorphTo ? [
             $relationship->getMorphType() => $this->factory instanceof Factory ? $this->factory->newModel()->getMorphClass() : $this->factory->getMorphClass(),
-            $relationship->getForeignKeyName() => $this->resolver($relationship->getOwnerKeyName()),
+            $this->getForeignKeyName($relationship) => $this->resolver($this->getOwnerKeyName($relationship)),
         ] : [
-            $relationship->getForeignKeyName() => $this->resolver($relationship->getOwnerKeyName()),
+            $this->getForeignKeyName($relationship) => $this->resolver($this->getOwnerKeyName($relationship)),
         ];
+    }
+
+    /** @param BelongsTo|MorphTo $relation */
+    protected function getForeignKeyName($relation): string
+    {
+        if (method_exists($relation, 'getForeignKeyName')) {
+            return $relation->getForeignKeyName();
+        } else {
+            return $relation->getForeignKey();
+        }
+    }
+
+    /** @param BelongsTo|MorphTo $relation */
+    protected function getOwnerKeyName($relation): ?string
+    {
+        if (method_exists($relation, 'getOwnerKeyName')) {
+            return $relation->getOwnerKeyName();
+        } else {
+            return $relation->getOwnerKey();
+        }
     }
 
     /**
