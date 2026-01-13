@@ -12,73 +12,73 @@ jobs:
       matrix: &versions
         include:
           # Laravel 5.1 (LTS)
-          - { name: 'PHP 5.5 / Laravel 5.1', php: '5.5', laravel: '5.1.0' }
-          - { name: 'PHP 5.6 / Laravel 5.1', php: '5.6', laravel: '5.1.0' }
-          - { name: 'PHP 7.0 / Laravel 5.1', php: '7.0', laravel: '5.1.0' }
-          - { name: 'PHP 7.1 / Laravel 5.1', php: '7.1', laravel: '5.1.0' }
-          - { name: 'PHP 7.2 / Laravel 5.1', php: '7.2', laravel: '5.1.0' }
-          - { name: 'PHP 7.3 / Laravel 5.1', php: '7.3', laravel: '5.1.0' }
-          - { name: 'PHP 7.4 / Laravel 5.1', php: '7.4', laravel: '5.1.0' }
+          - { name: 'PHP 5.5 / Laravel 5.1', php: '5.5', laravel: '5.1.*' }
+          - { name: 'PHP 5.6 / Laravel 5.1', php: '5.6', laravel: '5.1.*' }
+          - { name: 'PHP 7.0 / Laravel 5.1', php: '7.0', laravel: '5.1.*' }
+          - { name: 'PHP 7.1 / Laravel 5.1', php: '7.1', laravel: '5.1.*' }
+          - { name: 'PHP 7.2 / Laravel 5.1', php: '7.2', laravel: '5.1.*' }
+          - { name: 'PHP 7.3 / Laravel 5.1', php: '7.3', laravel: '5.1.*' }
+          - { name: 'PHP 7.4 / Laravel 5.1', php: '7.4', laravel: '5.1.*' }
 
           # Laravel 5.2
-          - { name: 'PHP 5.5 / Laravel 5.2', php: '5.5', laravel: '5.2.0' }
-          - { name: 'PHP 5.6 / Laravel 5.2', php: '5.6', laravel: '5.2.0' }
-          - { name: 'PHP 7.0 / Laravel 5.2', php: '7.0', laravel: '5.2.0' }
-          - { name: 'PHP 7.1 / Laravel 5.2', php: '7.1', laravel: '5.2.0' }
-          - { name: 'PHP 7.2 / Laravel 5.2', php: '7.2', laravel: '5.2.0' }
-          - { name: 'PHP 7.3 / Laravel 5.2', php: '7.3', laravel: '5.2.0' }
-          - { name: 'PHP 7.4 / Laravel 5.2', php: '7.4', laravel: '5.2.0' }
+          - { name: 'PHP 5.5 / Laravel 5.2', php: '5.5', laravel: '5.2.*' }
+          - { name: 'PHP 5.6 / Laravel 5.2', php: '5.6', laravel: '5.2.*' }
+          - { name: 'PHP 7.0 / Laravel 5.2', php: '7.0', laravel: '5.2.*' }
+          - { name: 'PHP 7.1 / Laravel 5.2', php: '7.1', laravel: '5.2.*' }
+          - { name: 'PHP 7.2 / Laravel 5.2', php: '7.2', laravel: '5.2.*' }
+          - { name: 'PHP 7.3 / Laravel 5.2', php: '7.3', laravel: '5.2.*' }
+          - { name: 'PHP 7.4 / Laravel 5.2', php: '7.4', laravel: '5.2.*' }
 
           # Laravel 5.3
-          - { name: 'PHP 5.6 / Laravel 5.3', php: '5.6', laravel: '5.3.0' }
-          - { name: 'PHP 7.0 / Laravel 5.3', php: '7.0', laravel: '5.3.0' }
-          - { name: 'PHP 7.1 / Laravel 5.3', php: '7.1', laravel: '5.3.0' }
-          - { name: 'PHP 7.2 / Laravel 5.3', php: '7.2', laravel: '5.3.0' }
-          - { name: 'PHP 7.3 / Laravel 5.3', php: '7.3', laravel: '5.3.0' }
-          - { name: 'PHP 7.4 / Laravel 5.3', php: '7.4', laravel: '5.3.0' }
+          - { name: 'PHP 5.6 / Laravel 5.3', php: '5.6', laravel: '5.3.*' }
+          - { name: 'PHP 7.0 / Laravel 5.3', php: '7.0', laravel: '5.3.*' }
+          - { name: 'PHP 7.1 / Laravel 5.3', php: '7.1', laravel: '5.3.*' }
+          - { name: 'PHP 7.2 / Laravel 5.3', php: '7.2', laravel: '5.3.*' }
+          - { name: 'PHP 7.3 / Laravel 5.3', php: '7.3', laravel: '5.3.*' }
+          - { name: 'PHP 7.4 / Laravel 5.3', php: '7.4', laravel: '5.3.*' }
 
           # Laravel 5.4
-          - { name: 'PHP 5.6 / Laravel 5.4', php: '5.6', laravel: '5.4.0' }
-          - { name: 'PHP 7.0 / Laravel 5.4', php: '7.0', laravel: '5.4.0' }
-          - { name: 'PHP 7.1 / Laravel 5.4', php: '7.1', laravel: '5.4.0' }
-          - { name: 'PHP 7.2 / Laravel 5.4', php: '7.2', laravel: '5.4.0' }
-          - { name: 'PHP 7.3 / Laravel 5.4', php: '7.3', laravel: '5.4.0' }
-          - { name: 'PHP 7.4 / Laravel 5.4', php: '7.4', laravel: '5.4.0' }
+          - { name: 'PHP 5.6 / Laravel 5.4', php: '5.6', laravel: '5.4.*' }
+          - { name: 'PHP 7.0 / Laravel 5.4', php: '7.0', laravel: '5.4.*' }
+          - { name: 'PHP 7.1 / Laravel 5.4', php: '7.1', laravel: '5.4.*' }
+          - { name: 'PHP 7.2 / Laravel 5.4', php: '7.2', laravel: '5.4.*' }
+          - { name: 'PHP 7.3 / Laravel 5.4', php: '7.3', laravel: '5.4.*' }
+          - { name: 'PHP 7.4 / Laravel 5.4', php: '7.4', laravel: '5.4.*' }
 
           # Laravel 5.5 (LTS)
-          - { name: 'PHP 7.0 / Laravel 5.5', php: '7.0', laravel: '5.5.0' }
-          - { name: 'PHP 7.1 / Laravel 5.5', php: '7.1', laravel: '5.5.0' }
-          - { name: 'PHP 7.2 / Laravel 5.5', php: '7.2', laravel: '5.5.0' }
-          - { name: 'PHP 7.3 / Laravel 5.5', php: '7.3', laravel: '5.5.0' }
-          - { name: 'PHP 7.4 / Laravel 5.5', php: '7.4', laravel: '5.5.0' }
+          - { name: 'PHP 7.0 / Laravel 5.5', php: '7.0', laravel: '5.5.*' }
+          - { name: 'PHP 7.1 / Laravel 5.5', php: '7.1', laravel: '5.5.*' }
+          - { name: 'PHP 7.2 / Laravel 5.5', php: '7.2', laravel: '5.5.*' }
+          - { name: 'PHP 7.3 / Laravel 5.5', php: '7.3', laravel: '5.5.*' }
+          - { name: 'PHP 7.4 / Laravel 5.5', php: '7.4', laravel: '5.5.*' }
 
           # Laravel 5.6
-          - { name: 'PHP 7.1 / Laravel 5.6', php: '7.1', laravel: '5.6.0' }
-          - { name: 'PHP 7.2 / Laravel 5.6', php: '7.2', laravel: '5.6.0' }
-          - { name: 'PHP 7.3 / Laravel 5.6', php: '7.3', laravel: '5.6.0' }
-          - { name: 'PHP 7.4 / Laravel 5.6', php: '7.4', laravel: '5.6.0' }
+          - { name: 'PHP 7.1 / Laravel 5.6', php: '7.1', laravel: '5.6.*' }
+          - { name: 'PHP 7.2 / Laravel 5.6', php: '7.2', laravel: '5.6.*' }
+          - { name: 'PHP 7.3 / Laravel 5.6', php: '7.3', laravel: '5.6.*' }
+          - { name: 'PHP 7.4 / Laravel 5.6', php: '7.4', laravel: '5.6.*' }
 
           # Laravel 5.7
-          - { name: 'PHP 7.1 / Laravel 5.7', php: '7.1', laravel: '5.7.0' }
-          - { name: 'PHP 7.2 / Laravel 5.7', php: '7.2', laravel: '5.7.0' }
-          - { name: 'PHP 7.3 / Laravel 5.7', php: '7.3', laravel: '5.7.0' }
-          - { name: 'PHP 7.4 / Laravel 5.7', php: '7.4', laravel: '5.7.0' }
+          - { name: 'PHP 7.1 / Laravel 5.7', php: '7.1', laravel: '5.7.*' }
+          - { name: 'PHP 7.2 / Laravel 5.7', php: '7.2', laravel: '5.7.*' }
+          - { name: 'PHP 7.3 / Laravel 5.7', php: '7.3', laravel: '5.7.*' }
+          - { name: 'PHP 7.4 / Laravel 5.7', php: '7.4', laravel: '5.7.*' }
 
           # Laravel 5.8
-          - { name: 'PHP 7.1 / Laravel 5.8', php: '7.1', laravel: '5.8.0' }
-          - { name: 'PHP 7.2 / Laravel 5.8', php: '7.2', laravel: '5.8.0' }
-          - { name: 'PHP 7.3 / Laravel 5.8', php: '7.3', laravel: '5.8.0' }
-          - { name: 'PHP 7.4 / Laravel 5.8', php: '7.4', laravel: '5.8.0' }
+          - { name: 'PHP 7.1 / Laravel 5.8', php: '7.1', laravel: '5.8.*' }
+          - { name: 'PHP 7.2 / Laravel 5.8', php: '7.2', laravel: '5.8.*' }
+          - { name: 'PHP 7.3 / Laravel 5.8', php: '7.3', laravel: '5.8.*' }
+          - { name: 'PHP 7.4 / Laravel 5.8', php: '7.4', laravel: '5.8.*' }
 
           # Laravel 6 (LTS)
-          - { name: 'PHP 7.2 / Laravel 6.x', php: '7.2', laravel: '6.0.0' }
-          - { name: 'PHP 7.3 / Laravel 6.x', php: '7.3', laravel: '6.0.0' }
-          - { name: 'PHP 7.4 / Laravel 6.x', php: '7.4', laravel: '6.0.0' }
+          - { name: 'PHP 7.2 / Laravel 6.x', php: '7.2', laravel: '^6.0' }
+          - { name: 'PHP 7.3 / Laravel 6.x', php: '7.3', laravel: '^6.0' }
+          - { name: 'PHP 7.4 / Laravel 6.x', php: '7.4', laravel: '^6.0' }
 
           # Laravel 7
-          - { name: 'PHP 7.2 / Laravel 7.x', php: '7.2', laravel: '7.0.0' }
-          - { name: 'PHP 7.3 / Laravel 7.x', php: '7.3', laravel: '7.0.0' }
-          - { name: 'PHP 7.4 / Laravel 7.x', php: '7.4', laravel: '7.0.0' }
+          - { name: 'PHP 7.2 / Laravel 7.x', php: '7.2', laravel: '^7.0' }
+          - { name: 'PHP 7.3 / Laravel 7.x', php: '7.3', laravel: '^7.0' }
+          - { name: 'PHP 7.4 / Laravel 7.x', php: '7.4', laravel: '^7.0' }
     steps:
       - &checkout
         name: Checkout Code
@@ -94,7 +94,7 @@ jobs:
 
       - &composer
         name: Install Composer Dependencies
-        run: composer require illuminate/database:~${{ matrix.laravel }} --no-interaction --no-progress --ansi
+        run: composer require illuminate/database:${{ matrix.laravel }} --no-interaction --no-progress --ansi
 
       - name: Run PHP Lint
         if: matrix.php == '5.5' || matrix.php == '5.6' || matrix.php == '7.0' || matrix.php == '7.1'
