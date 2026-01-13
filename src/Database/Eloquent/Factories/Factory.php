@@ -301,10 +301,6 @@ abstract class Factory
      */
     private function withoutEvents($callback)
     {
-        if (method_exists(Model::class, 'withoutEvents')) {
-            return Model::withoutEvents($callback);
-        }
-
         $dispatcher = Model::getEventDispatcher();
         /** @var ?Dispatcher $dispatcher */
 
