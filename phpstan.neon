@@ -6,4 +6,4 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - '#Parameter \#1 \$source of method Illuminate\\Support\\Collection::concat\(\) expects Traversable, array<[^,]+, [^>]+> given\.#'
-        - '#Call to function method_exists\(\) with [\w\\]+ and ''\w+'' will always evaluate to true\.#'
+        - '#Call to function method_exists\(\) with ''?[\w\\]+''? and ''\w+'' will always evaluate to true\.#'

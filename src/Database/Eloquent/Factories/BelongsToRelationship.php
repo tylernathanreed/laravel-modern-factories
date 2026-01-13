@@ -70,6 +70,7 @@ class BelongsToRelationship
         if (method_exists($relation, 'getForeignKeyName')) {
             return $relation->getForeignKeyName();
         } else {
+            // @phpstan-ignore-next-line method.notFound
             return $relation->getForeignKey();
         }
     }
@@ -85,6 +86,7 @@ class BelongsToRelationship
         } elseif (method_exists($relation, 'getOwnerKey')) {
             return $relation->getOwnerKey();
         } else {
+            // @phpstan-ignore-next-line method.notFound
             return $relation->getOtherKey();
         }
     }

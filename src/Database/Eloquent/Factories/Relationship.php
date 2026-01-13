@@ -71,6 +71,7 @@ class Relationship
         } elseif (method_exists($relation, 'getPlainForeignKey')) {
             return $relation->getPlainForeignKey();
         } else {
+            // @phpstan-ignore-next-line method.notFound
             return $relation->getForeignKey();
         }
     }

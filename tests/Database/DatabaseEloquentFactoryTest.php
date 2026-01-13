@@ -167,10 +167,10 @@ class DatabaseEloquentFactoryTest extends TestCase
     public function it_can_create_models_with_basic_attributes()
     {
         $user = FactoryTestUserFactory::newFactory()->raw();
-        $this->assertIsArray($user);
+        self::assertIsArray($user);
 
         $user = FactoryTestUserFactory::newFactory()->raw(['name' => 'Taylor Otwell']);
-        $this->assertIsArray($user);
+        self::assertIsArray($user);
         $this->assertSame('Taylor Otwell', $user['name']);
     }
 
@@ -178,11 +178,11 @@ class DatabaseEloquentFactoryTest extends TestCase
     public function it_can_create_models_with_expanded_attributes()
     {
         $post = FactoryTestPostFactory::newFactory()->raw();
-        $this->assertIsArray($post);
+        self::assertIsArray($post);
 
         $post = FactoryTestPostFactory::newFactory()->raw(['title' => 'Test Title']);
-        $this->assertIsArray($post);
-        $this->assertIsInt($post['user_id']);
+        self::assertIsArray($post);
+        self::assertIsInt($post['user_id']);
         $this->assertSame('Test Title', $post['title']);
     }
 
@@ -190,11 +190,11 @@ class DatabaseEloquentFactoryTest extends TestCase
     public function it_can_create_models_with_lazy_attributes()
     {
         $userFunction = FactoryTestUserFactory::newFactory()->lazy();
-        $this->assertIsCallable($userFunction);
+        self::assertIsCallable($userFunction);
         $this->assertInstanceOf(Eloquent::class, $userFunction());
 
         $userFunction = FactoryTestUserFactory::newFactory()->lazy(['name' => 'Taylor Otwell']);
-        $this->assertIsCallable($userFunction);
+        self::assertIsCallable($userFunction);
 
         $user = $userFunction();
         $this->assertInstanceOf(Eloquent::class, $user);
@@ -205,7 +205,7 @@ class DatabaseEloquentFactoryTest extends TestCase
     public function it_can_create_multiple_models()
     {
         $posts = FactoryTestPostFactory::newFactory()->times(10)->raw();
-        $this->assertIsArray($posts);
+        self::assertIsArray($posts);
 
         $this->assertCount(10, $posts);
     }
@@ -613,19 +613,19 @@ class DatabaseEloquentFactoryTest extends TestCase
         return $connection->getSchemaBuilder();
     }
 
-    private function assertIsArray($value)
+    public static function assertIsArray($value)
     {
-        $this->assertTrue(is_array($value));
+        static::assertTrue(is_array($value));
     }
 
-    private function assertIsInt($value)
+    public static function assertIsInt($value)
     {
-        $this->assertTrue(is_int($value));
+        static::assertTrue(is_int($value));
     }
 
-    private function assertIsCallable($value)
+    public static function assertIsCallable($value)
     {
-        $this->assertTrue(is_callable($value));
+        static::assertTrue(is_callable($value));
     }
 }
 
