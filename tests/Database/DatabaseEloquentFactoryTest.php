@@ -107,7 +107,7 @@ class DatabaseEloquentFactoryTest extends TestCase
         } catch (Exception $e) {
 
         } catch (Throwable $e) {
-            
+
         }
     }
 
