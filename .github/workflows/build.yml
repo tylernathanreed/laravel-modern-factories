@@ -65,20 +65,20 @@ jobs:
           - { name: 'PHP 7.4 / Laravel 5.7', php: '7.4', laravel: '5.7.0' }
 
           # Laravel 5.8
-          - { name: 'PHP 7.1 / Laravel 5.8', php: '7.1', laravel: '5.7.0' }
-          - { name: 'PHP 7.2 / Laravel 5.8', php: '7.2', laravel: '5.7.0' }
-          - { name: 'PHP 7.3 / Laravel 5.8', php: '7.3', laravel: '5.7.0' }
-          - { name: 'PHP 7.4 / Laravel 5.8', php: '7.4', laravel: '5.7.0' }
+          - { name: 'PHP 7.1 / Laravel 5.8', php: '7.1', laravel: '5.8.0' }
+          - { name: 'PHP 7.2 / Laravel 5.8', php: '7.2', laravel: '5.8.0' }
+          - { name: 'PHP 7.3 / Laravel 5.8', php: '7.3', laravel: '5.8.0' }
+          - { name: 'PHP 7.4 / Laravel 5.8', php: '7.4', laravel: '5.8.0' }
 
           # Laravel 6 (LTS)
-          - { name: 'PHP 7.2 / Laravel 5.8', php: '7.2', laravel: '5.7.0' }
-          - { name: 'PHP 7.3 / Laravel 5.8', php: '7.3', laravel: '5.7.0' }
-          - { name: 'PHP 7.4 / Laravel 5.8', php: '7.4', laravel: '5.7.0' }
+          - { name: 'PHP 7.2 / Laravel 6.x', php: '7.2', laravel: '6.0.0' }
+          - { name: 'PHP 7.3 / Laravel 6.x', php: '7.3', laravel: '6.0.0' }
+          - { name: 'PHP 7.4 / Laravel 6.x', php: '7.4', laravel: '6.0.0' }
 
-          # Laravel 8
-          - { name: 'PHP 7.2 / Laravel 5.8', php: '7.2', laravel: '5.7.0' }
-          - { name: 'PHP 7.3 / Laravel 5.8', php: '7.3', laravel: '5.7.0' }
-          - { name: 'PHP 7.4 / Laravel 5.8', php: '7.4', laravel: '5.7.0' }
+          # Laravel 7
+          - { name: 'PHP 7.2 / Laravel 7.x', php: '7.2', laravel: '7.0.0' }
+          - { name: 'PHP 7.3 / Laravel 7.x', php: '7.3', laravel: '7.0.0' }
+          - { name: 'PHP 7.4 / Laravel 7.x', php: '7.4', laravel: '7.0.0' }
     steps:
       - &checkout
         name: Checkout Code
