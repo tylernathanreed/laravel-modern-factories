@@ -1,10 +1,11 @@
 services:
   dev:
     build:
-      context: ./docker/8.1
+      context: ./docker
       dockerfile: Dockerfile
       args:
         WWWGROUP: '${WWWGROUP}'
+        PHP: '${PHP_VERSION:-7.4}'
     image: modern-laravel-factories
     environment:
         WWWUSER: '${WWWUSER}'

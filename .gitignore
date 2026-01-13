@@ -1,3 +1,4 @@
+.env
 .php-cs-fixer.cache
 .phpunit.coverage.json
 .phpunit.coverage.xml

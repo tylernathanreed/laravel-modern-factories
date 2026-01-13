@@ -208,7 +208,7 @@ abstract class Factory
      */
     public function createOne($attributes = [])
     {
-        // @phpstan-ignore return.type
+        // @phpstan-ignore-next-line return.type
         return $this->count(null)->create($attributes);
     }
 
@@ -220,7 +220,7 @@ abstract class Factory
      */
     public function createOneQuietly($attributes = [])
     {
-        // @phpstan-ignore return.type
+        // @phpstan-ignore-next-line return.type
         return $this->count(null)->createQuietly($attributes);
     }
 
@@ -375,7 +375,7 @@ abstract class Factory
      */
     public function makeOne($attributes = [])
     {
-        // @phpstan-ignore return.type
+        // @phpstan-ignore-next-line return.type
         return $this->count(null)->make($attributes);
     }
 
@@ -493,7 +493,7 @@ abstract class Factory
             }
 
             if ($attribute instanceof self) {
-                // @phpstan-ignore method.notFound
+                // @phpstan-ignore-next-line method.notFound
                 $attribute = $attribute->create()->getKey();
             } elseif ($attribute instanceof Model) {
                 $attribute = $attribute->getKey();

@@ -18,7 +18,8 @@
     "require": {
         "php": ">=5.5",
         "illuminate/database": "^5.1",
-        "illuminate/support": "^5.1"
+        "illuminate/support": "^5.1",
+        "phpstan/phpstan": "^1.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
