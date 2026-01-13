@@ -26,7 +26,7 @@ use Throwable;
 
 class DatabaseEloquentFactoryTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $container = Container::getInstance();
 
@@ -96,7 +96,7 @@ class DatabaseEloquentFactoryTest extends TestCase
         });
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -611,21 +611,6 @@ class DatabaseEloquentFactoryTest extends TestCase
         assert($connection instanceof Connection);
 
         return $connection->getSchemaBuilder();
-    }
-
-    public static function assertIsArray($value)
-    {
-        static::assertTrue(is_array($value));
-    }
-
-    public static function assertIsInt($value)
-    {
-        static::assertTrue(is_int($value));
-    }
-
-    public static function assertIsCallable($value)
-    {
-        static::assertTrue(is_callable($value));
     }
 }
 
