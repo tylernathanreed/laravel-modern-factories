@@ -3,8 +3,8 @@
 This package brings modern Laravel Factories (circa Laravel 8) to older versions of Laravel,
 with the aim of helping legacy applications update to modern Laravel.
 
-[![Laravel Version](https://img.shields.io/badge/Laravel-6.x%2F7.x-blue)](https://laravel.com/)
-[![PHP Version](https://img.shields.io/badge/PHP-7.2%2F8.0-purple)](https://php.net/)
+[![Laravel Version](https://img.shields.io/badge/Laravel-5.1%2F7.x-blue)](https://laravel.com/)
+[![PHP Version](https://img.shields.io/badge/PHP-5.5%2F8.4-purple)](https://php.net/)
 [![Build](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/guardrails.yml/badge.svg)](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/guardrails.yml)
 
 **Usage of Laravel 7 and older is waning, but it ain't zero. Trying to upgrade? Maybe this package can help.**
@@ -50,8 +50,8 @@ The following Laravel and PHP versions are supported:
 
 | Package   | Laravel   | PHP       |
 | --------- | --------- | --------- |
-| 1.x       | 5.1 - 5.4 | 5.5 - 8.0 |
-| 2.x       | 5.4 - 7.x | 7.0 - 8.0 |
+| 1.x       | 5.1 - 7.x | 5.5 - 7.4 |
+| 2.x       | 6.x - 7.x | 8.0 - 8.4 |
 
 ## Usage
 
