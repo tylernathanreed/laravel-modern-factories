@@ -5,7 +5,7 @@ with the aim of helping legacy applications update to modern Laravel.
 
 [![Laravel Version](https://img.shields.io/badge/Laravel-5.1%2F7.x-blue)](https://laravel.com/)
 [![PHP Version](https://img.shields.io/badge/PHP-5.5%2F8.4-purple)](https://php.net/)
-[![Build](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/guardrails.yml/badge.svg)](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/guardrails.yml)
+[![Build](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/build.yml/badge.svg)](https://github.com/tylernathanreed/laravel-modern-factories/actions/workflows/build.yml)
 
 **Usage of Laravel 7 and older is waning, but it ain't zero. Trying to upgrade? Maybe this package can help.**
 
