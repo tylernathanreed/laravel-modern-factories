@@ -1,4 +1,0 @@
-services:
-  dev:
-    build:
-      context: ./docker/7.4
