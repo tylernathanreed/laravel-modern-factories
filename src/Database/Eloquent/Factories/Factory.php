@@ -131,8 +131,7 @@ abstract class Factory
         $afterMaking = null,
         $afterCreating = null,
         $connection = null
-    )
-    {
+    ) {
         $this->count = $count;
         $this->states = $states ?: new Collection();
         $this->has = $has ?: new Collection();
@@ -882,7 +881,7 @@ abstract class Factory
             $count = isset($parameters[0]) && is_numeric($parameters[0])
                 ? $parameters[0]
                 : 1;
-            
+
             $state = isset($parameters[0]) && is_array($parameters[0])
                 ? $parameters[0]
                 : (isset($parameters[1]) ? $parameters[1] : []);

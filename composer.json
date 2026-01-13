@@ -3,10 +3,9 @@
     "description": "Adds modern Laravel Factories to older versions of Laravel",
     "keywords": [
         "laravel",
-        "relation",
-        "join",
+        "testing",
         "eloquent",
-        "query"
+        "factories"
     ],
     "license": "MIT",
     "authors": [
@@ -22,7 +21,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "friendsofphp/php-cs-fixer": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.0|^3.0",
         "illuminate/events": "^6.0|^7.0",
         "mockery/mockery": "^1.3",
         "php-coveralls/php-coveralls": "^2.4",
@@ -39,13 +38,6 @@
     "autoload-dev": {
         "psr-4": {
             "Illuminate\\Tests\\": "tests/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Reedware\\ModernLaravelFactories\\ModernLaravelFactoriesServiceProvider"
-            ]
         }
     },
     "minimum-stability": "stable",
@@ -68,8 +60,8 @@
             "php-coveralls -v --dry-run"
         ],
         "test:static": "phpstan",
-        "test:lint": "php-cs-fixer fix --allow-risky yes --show-progress true --dry-run",
-        "test:lint:fix": "php-cs-fixer fix --allow-risky yes --show-progress true",
+        "test:lint": "php-cs-fixer fix --allow-risky yes --show-progress dots --dry-run",
+        "test:lint:fix": "php-cs-fixer fix --allow-risky yes --show-progress dots",
         "test:lint:legacy": "find . -path ./vendor -prune -o -type f -name \"*.php\" -print0 | xargs -0 -n1 php -l",
         "test:suite": "phpunit",
         "test": [

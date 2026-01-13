@@ -31,7 +31,7 @@ class DatabaseEloquentFactoryTest extends TestCase
         $container = Container::getInstance();
 
         if (is_null($container)) {
-            $container = new Container;
+            $container = new Container();
             Container::setInstance($container);
         }
 
