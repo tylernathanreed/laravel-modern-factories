@@ -31,7 +31,6 @@ class Sequence implements Countable
     /**
      * Create a new sequence instance.
      *
-     * @param list<mixed>  $sequence
      * @return void
      */
     public function __construct()

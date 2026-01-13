@@ -525,7 +525,6 @@ abstract class Factory
     /**
      * Add a new sequenced state transformation to the model definition.
      *
-     * @param  list<array<string,mixed>>  $sequence
      * @return static
      */
     public function sequence()
@@ -536,7 +535,6 @@ abstract class Factory
     /**
      * Add a new cross joined sequenced state transformation to the model definition.
      *
-     * @param  list<array<string,mixed>>  $sequence
      * @return static
      */
     public function crossJoinSequence()
@@ -739,13 +737,13 @@ abstract class Factory
     public function modelName()
     {
         $resolver = static::$modelNameResolver ?: function (self $factory) {
-            $namespacedFactoryBasename = static::replaceLast(
+            $namespacedFactoryBasename = self::replaceLast(
                 'Factory',
                 '',
-                static::replaceFirst(static::$namespace, '', get_class($factory))
+                self::replaceFirst(static::$namespace, '', get_class($factory))
             );
 
-            $factoryBasename = static::replaceLast('Factory', '', class_basename($factory));
+            $factoryBasename = self::replaceLast('Factory', '', class_basename($factory));
 
             $appNamespace = static::appNamespace();
 
@@ -915,7 +913,7 @@ abstract class Factory
             return static::newFactory(isset($parameters[0]) ? $parameters[0] : []);
         }
 
-        $this->throwBadMethodCallException($method);
+        static::throwBadMethodCallException($method);
     }
 
     /**
