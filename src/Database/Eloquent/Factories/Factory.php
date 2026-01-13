@@ -18,8 +18,10 @@ use ReflectionClass;
 use Throwable;
 
 /**
+ * @template TModel of Model
+ *
  * @method static static new(callable|array<string,mixed> $attributes)
- * @method static for(Factory|Model $factory, string|null $relationship)
+ * @method static for(Factory<Model>|Model $factory, string|null $relationship)
  */
 abstract class Factory
 {
@@ -30,7 +32,7 @@ abstract class Factory
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string|null
+     * @var class-string<TModel>|null
      */
     protected $model;
 
@@ -204,7 +206,7 @@ abstract class Factory
      * Create a single model and persist it to the database.
      *
      * @param  array<string,mixed>  $attributes
-     * @return Model
+     * @return TModel
      */
     public function createOne($attributes = [])
     {
@@ -216,7 +218,7 @@ abstract class Factory
      * Create a single model and persist it to the database.
      *
      * @param  array<string,mixed>  $attributes
-     * @return Model
+     * @return TModel
      */
     public function createOneQuietly($attributes = [])
     {
@@ -228,7 +230,7 @@ abstract class Factory
      * Create a collection of models and persist them to the database.
      *
      * @param  iterable<array<string,mixed>>  $records
-     * @return EloquentCollection
+     * @return EloquentCollection<int,TModel>
      */
     public function createMany($records)
     {
@@ -243,7 +245,7 @@ abstract class Factory
      * Create a collection of models and persist them to the database.
      *
      * @param  iterable<array<string,mixed>>  $records
-     * @return EloquentCollection
+     * @return EloquentCollection<int,TModel>
      */
     public function createManyQuietly($records)
     {
@@ -257,7 +259,7 @@ abstract class Factory
      *
      * @param  array<string,mixed>  $attributes
      * @param  Model|null  $parent
-     * @return EloquentCollection|Model
+     * @return EloquentCollection<int,TModel>|TModel
      */
     public function create($attributes = [], $parent = null)
     {
@@ -285,7 +287,7 @@ abstract class Factory
      *
      * @param  array<string,mixed>  $attributes
      * @param  Model|null  $parent
-     * @return EloquentCollection|Model
+     * @return EloquentCollection<int,TModel>|TModel
      */
     public function createQuietly($attributes = [], $parent = null)
     {
@@ -351,7 +353,7 @@ abstract class Factory
     /**
      * Create the children for the given model.
      *
-     * @param  Model  $model
+     * @param  TModel  $model
      * @return void
      */
     protected function createChildren($model)
@@ -367,7 +369,7 @@ abstract class Factory
      * Make a single instance of the model.
      *
      * @param  array<string,mixed>  $attributes
-     * @return Model
+     * @return TModel
      */
     public function makeOne($attributes = [])
     {
@@ -380,7 +382,7 @@ abstract class Factory
      *
      * @param  array<string,mixed>  $attributes
      * @param  Model|null  $parent
-     * @return EloquentCollection|Model
+     * @return EloquentCollection<int,TModel>|TModel
      */
     public function make($attributes = [], $parent = null)
     {
@@ -412,7 +414,7 @@ abstract class Factory
      * Make an instance of the model with the given attributes.
      *
      * @param  Model|null  $parent
-     * @return Model
+     * @return TModel
      */
     protected function makeInstance($parent)
     {
@@ -541,7 +543,7 @@ abstract class Factory
     /**
      * Define a child relationship for the model.
      *
-     * @param  Factory  $factory
+     * @param  Factory<Model>  $factory
      * @param  string|null  $relationship
      * @return static
      */
@@ -571,7 +573,7 @@ abstract class Factory
     /**
      * Define an attached relationship for the model.
      *
-     * @param  \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|Model  $factory
+     * @param  Factory<Model>|Collection<int,Model>|Model  $factory
      * @param  callable|array<string,mixed>  $pivot
      * @param  string|null  $relationship
      * @return static
@@ -594,7 +596,7 @@ abstract class Factory
     /**
      * Define a parent relationship for the model.
      *
-     * @param  Factory|Model  $factory
+     * @param  Factory<Model>|Model  $factory
      * @param  string|null  $relationship
      * @return static
      */
@@ -611,7 +613,7 @@ abstract class Factory
     /**
      * Add a new "after making" callback to the model definition.
      *
-     * @param  Closure  $callback
+     * @param  Closure(TModel):void  $callback
      * @return static
      */
     public function afterMaking($callback)
@@ -622,7 +624,7 @@ abstract class Factory
     /**
      * Add a new "after creating" callback to the model definition.
      *
-     * @param  Closure  $callback
+     * @param  Closure(TModel):void  $callback
      * @return static
      */
     public function afterCreating($callback)
@@ -701,6 +703,7 @@ abstract class Factory
             'connection' => $this->connection,
         ], $arguments);
 
+        // @phpstan-ignore-next-line return.type
         return new static(
             $params['count'],
             $params['states'],
@@ -716,7 +719,7 @@ abstract class Factory
      * Get a new model instance.
      *
      * @param  array<string,mixed>  $attributes
-     * @return Model
+     * @return TModel
      */
     public function newModel($attributes = [])
     {
@@ -728,7 +731,7 @@ abstract class Factory
     /**
      * Get the name of the model that is generated by the factory.
      *
-     * @return class-string<Model>
+     * @return class-string<TModel>
      */
     public function modelName()
     {
@@ -800,7 +803,7 @@ abstract class Factory
     /**
      * Get a new Faker instance.
      *
-     * @return \Faker\Generator
+     * @return Generator
      */
     protected function withFaker()
     {
@@ -918,7 +921,7 @@ abstract class Factory
      * @param  string  $method
      * @return void
      *
-     * @throws \BadMethodCallException
+     * @throws BadMethodCallException
      */
     protected static function throwBadMethodCallException($method)
     {

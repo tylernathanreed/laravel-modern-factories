@@ -3,15 +3,16 @@
 namespace Illuminate\Database\Eloquent\Factories;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
+/** @template TModel of Model */
 class BelongsToManyRelationship
 {
     /**
      * The related factory instance.
      *
-     * @var \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model
+     * @var Factory<TModel>|Collection<int,TModel>|TModel
      */
     protected $factory;
 
@@ -32,7 +33,7 @@ class BelongsToManyRelationship
     /**
      * Create a new attached relationship definition.
      *
-     * @param  \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model  $factory
+     * @param  Factory<TModel>|Collection<int,TModel>|TModel  $factory
      * @param  callable|array<string,mixed>  $pivot
      * @param  string  $relationship
      * @return void
@@ -47,7 +48,7 @@ class BelongsToManyRelationship
     /**
      * Create the attached relationship for the given model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  Model  $model
      * @return void
      */
     public function createFor(Model $model)
@@ -62,7 +63,7 @@ class BelongsToManyRelationship
 
     /**
      * @param mixed $value
-     * @return Collection
+     * @return Collection<int|string,mixed>
      */
     private function wrap($value)
     {

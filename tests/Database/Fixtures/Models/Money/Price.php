@@ -8,13 +8,8 @@ use Illuminate\Tests\Database\Fixtures\Factories\Money\PriceFactory;
 
 class Price extends Model
 {
+    /** @use HasFactory<PriceFactory> */
     use HasFactory;
 
     protected $table = 'prices';
-
-    /** @return PriceFactory */
-    public static function factory()
-    {
-        return PriceFactory::newFactory();
-    }
 }

@@ -2,17 +2,19 @@
 
 namespace Illuminate\Database\Eloquent\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 use Illuminate\Database\Eloquent\Relations\MorphOneOrMany;
 
+/** @template TModel of Model */
 class Relationship
 {
     /**
      * The related factory instance.
      *
-     * @var \Illuminate\Database\Eloquent\Factories\Factory
+     * @var Factory<TModel>
      */
     protected $factory;
 
@@ -26,7 +28,7 @@ class Relationship
     /**
      * Create a new child relationship instance.
      *
-     * @param  \Illuminate\Database\Eloquent\Factories\Factory  $factory
+     * @param  Factory<TModel>  $factory
      * @param  string  $relationship
      * @return void
      */
@@ -39,7 +41,7 @@ class Relationship
     /**
      * Create the child relationship for the given parent model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $parent
+     * @param  Model  $parent
      * @return void
      */
     public function createFor(Model $parent)

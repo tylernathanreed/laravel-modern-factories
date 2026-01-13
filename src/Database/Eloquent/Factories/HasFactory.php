@@ -2,13 +2,15 @@
 
 namespace Illuminate\Database\Eloquent\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/** @template TFactory of Factory */
 trait HasFactory
 {
     /**
      * Get a new factory instance for the model.
      *
-     * @param  mixed  $parameters
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return TFactory
      */
     public static function factory()
     {
@@ -24,13 +26,14 @@ trait HasFactory
             ? $parameters[0]
             : (isset($parameters[1]) ? $parameters[1] : []);
 
+        // @phpstan-ignore-next-line return.type
         return $factory->count($count)->state($state);
     }
 
     /**
      * Create a new factory instance for the model.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory|null
+     * @return ?TFactory
      */
     protected static function newFactory()
     {

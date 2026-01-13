@@ -3,16 +3,18 @@
 namespace Illuminate\Database\Eloquent\Factories;
 
 use Closure;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/** @template TModel of Model */
 class BelongsToRelationship
 {
     /**
      * The related factory instance.
      *
-     * @var \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Database\Eloquent\Model
+     * @var Factory<TModel>|TModel
      */
     protected $factory;
 
@@ -33,7 +35,7 @@ class BelongsToRelationship
     /**
      * Create a new "belongs to" relationship definition.
      *
-     * @param  \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Database\Eloquent\Model  $factory
+     * @param  Factory<TModel>|TModel  $factory
      * @param  string  $relationship
      * @return void
      */
@@ -46,7 +48,7 @@ class BelongsToRelationship
     /**
      * Get the parent model attributes and resolvers for the given child model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  TModel  $model
      * @return array<string,int|string|Closure>
      */
     public function attributesFor(Model $model)
