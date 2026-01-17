@@ -125,7 +125,7 @@ abstract class Factory
      * @param  string|null  $connection
      * @return void
      */
-    final public function __construct(
+    public function __construct(
         $count = null,
         $states = null,
         $has = null,
@@ -160,6 +160,7 @@ abstract class Factory
      */
     public static function newFactory($attributes = [])
     {
+        // @phpstan-ignore-next-line new.static
         return (new static())->state($attributes)->configure();
     }
 
