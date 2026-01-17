@@ -20,8 +20,8 @@ use Throwable;
 /**
  * @template TModel of Model
  *
- * @method static static new(callable|array<string,mixed> $attributes)
- * @method static for(Factory<Model>|Model $factory, string|null $relationship)
+ * @method static static new(callable|array<string,mixed> $attributes = [])
+ * @method static for(Factory<Model>|Model $factory, string|null $relationship = null)
  */
 abstract class Factory
 {
